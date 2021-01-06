@@ -10,25 +10,36 @@
             I will come back to you with in a matter of hours to help you.
         </p>
         <div class="col-sm-9 mb--5">
-            <form action="">
+            <form action="{% url 'contact' %}" method="POST" novalidate>
+                {% if msg %}
+                <p class="text-center text-success">{{msg}}</p>
+                {% endif %}
+                {% csrf_token %}
                 <div class="form-row">
+                    {% for frm in form  %}
+                    {% if frm.field.widget.input_type == 'text' %}
                     <div class="form-group col-md-6">
-                        <label for="inpuname">Your Name</label>
-                        <input type="text" class="form-control" id="inputname" />
+                        {{frm.label_tag}}
+                        {{frm}}
+                        {% if frm.errors %}
+                        <span class="text-danger">{{frm.errors|striptags}}</span>
+                        {% endif %}
+                     
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="inpemial">Your Email</label>
-                        <input type="email" class="form-control" id="inpemial" />
+                    {% else %}
+                    <div class="form-group col-md-12">
+                        {{frm.label_tag}}
+                        {{frm}}
+                        {% if frm.errors %}
+                        <span class="text-danger">{{frm.errors|striptags}}</span>
+                        {% endif %}
                     </div>
+                    {% endif %}
+                    {% endfor %}
+                    
                 </div>
-                    <div class="form-group">
-                        <label for="inptextarea">Your Subject</label>
-                        <textarea name="" id="inptextarea"  class="form-control"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inptextarea">Your Message</label>
-                        <textarea name="" id="inptextarea"  class="form-control"></textarea>
-                    </div>
+                 
+                    
                     <button class="btn btn-primary" type="submit">Send</button>
             </form>
         </div>

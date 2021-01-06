@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="{% static 'css/core.css' %}">
     {% endblock corecss %}
     <title> {% block title %}{% endblock title %}</title>
+  <style>
+    input[type="text"]:focus,
+    textarea:focus{   
+  border-color: rgba(126, 239, 104, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+  outline: 0 none !important;
+}
+.eroroFoc:focus{   
+border-color: rgb(207, 56, 64) !important;
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(207, 56, 64) !important;
+outline: 0 none !important;
+}
+  </style>
 </head>
 <body>
 
